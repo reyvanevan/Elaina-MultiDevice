@@ -46,7 +46,6 @@ Gunakan ${usedPrefix}list untuk melihat semua list`)
 ${list.content}
 │
 ├━━━━━━━━━━━━━━━━
-│ 🆔 ID: ${list.id}
 │ 📅 Dibuat: ${createdDate}
 │ 🔄 Update: ${updatedDate}
 ╰━━━━━━━━━━━━━━━━
@@ -66,9 +65,9 @@ ${list.content}
       sections.push({
         title: `📂 List ${i + 1}-${Math.min(i + 10, listsArray.length)}`,
         rows: chunk.map(list => ({
-          header: "📋 " + list.title,
+          header: "📋",
           title: list.title,
-          description: `ID: ${list.id} • Dibuat: ${new Date(list.createdAt).toLocaleDateString('id-ID')}`,
+          description: `Dibuat: ${new Date(list.createdAt).toLocaleDateString('id-ID')}`,
           id: `${usedPrefix}list ${list.id}`
         }))
       })
@@ -122,11 +121,10 @@ ${list.content}
     
     Object.values(lists).forEach((list, i) => {
       text += `${i + 1}. *${list.title}*\n`
-      text += `   ID: \`${list.id}\`\n`
       text += `   📅 ${new Date(list.createdAt).toLocaleDateString('id-ID')}\n\n`
     })
     
-    text += `\nGunakan ${usedPrefix}list <id> untuk melihat detail`
+    text += `\nKetik nomor atau gunakan button untuk melihat detail`
     
     m.reply(text)
   }
