@@ -45,13 +45,26 @@ Permanen: 50k`)
     return m.reply('❌ Title dan content harus diisi!')
   }
   
+  // Check if title already exists
+  const titleTrimmed = title.trim()
+  const existingList = Object.values(global.db.data.chats[chatId].lists).find(
+    list => list.title.toLowerCase() === titleTrimmed.toLowerCase()
+  )
+  
+  if (existingList) {
+    return m.reply(`❌ List dengan title "${titleTrimmed}" sudah ada!
+
+Gunakan .listall untuk melihat semua list
+Atau gunakan .editlist untuk mengubah list yang sudah ada`)
+  }
+  
   // Generate unique ID
   const listId = 'list-' + Date.now()
   
   // Save to database
   global.db.data.chats[chatId].lists[listId] = {
     id: listId,
-    title: title.trim(),
+    title: titleTrimmed,
     content: content,
     createdBy: m.sender,
     createdAt: Date.now(),
@@ -63,7 +76,7 @@ Permanen: 50k`)
   m.reply(`✅ List berhasil ditambahkan!
 
 📋 ID: ${listId}
-📝 Title: ${title.trim()}
+📝 Title: ${titleTrimmed}
 📊 Total List: ${totalLists}/25
 
 Gunakan .list untuk melihat semua list
