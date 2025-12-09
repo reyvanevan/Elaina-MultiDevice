@@ -39,7 +39,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@rexxhayanasi/elaina-baileys": "^1.0.9", 
+        "@rexxhayanasi/elaina-baileys": "npm:@kelvdra/bails@^1.4.6", 
         "@bochilteam/scraper": "^5.0.1",
         "@google/genai": "^0.13.0",
         "@ibaraki-douji/pixivts": "^2.4.1",
