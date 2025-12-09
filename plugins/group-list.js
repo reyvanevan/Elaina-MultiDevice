@@ -64,10 +64,7 @@ ${list.content}
       sections.push({
         title: `📂 List ${i + 1}-${Math.min(i + 10, listsArray.length)}`,
         rows: chunk.map(list => ({
-          // header: "📋",
           title: list.title,
-          // description: `Dibuat: ${new Date(list.createdAt).toLocaleDateString('id-ID')}`,
-          description: "Tap untuk melihat detail",
           id: `${usedPrefix}list ${list.id}`
         }))
       })
