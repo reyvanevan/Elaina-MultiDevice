@@ -67,7 +67,7 @@ ${list.content}
           // header: "📋",
           title: list.title,
           // description: `Dibuat: ${new Date(list.createdAt).toLocaleDateString('id-ID')}`,
-          description: list.title,
+          description: "Tap untuk melihat detail",
           id: `${usedPrefix}list ${list.id}`
         }))
       })
