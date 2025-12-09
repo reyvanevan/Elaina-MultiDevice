@@ -35,22 +35,8 @@ Gunakan ${usedPrefix}list untuk melihat semua list`)
     }
     
     const list = lists[listId]
-    const createdDate = new Date(list.createdAt).toLocaleString('id-ID')
-    const updatedDate = new Date(list.updatedAt).toLocaleString('id-ID')
     
-    const text = `
-╭━━━━━━━━━━━━━━━━
-│ *${list.title}*
-├━━━━━━━━━━━━━━━━
-│
-${list.content}
-│
-├━━━━━━━━━━━━━━━━
-│ 🔄 Update: ${updatedDate}
-╰━━━━━━━━━━━━━━━━
-`.trim()
-    
-    return m.reply(text)
+    return m.reply(list.content)
   }
   
   // Show all lists with interactive button

@@ -1,7 +1,7 @@
 // Delete List - Admin delete list from group
-// Format: .dellist <id>
+// Format: .dellist <title>
 
-let handler = async (m, { conn, args, isAdmin, isOwner }) => {
+let handler = async (m, { conn, text, isAdmin, isOwner }) => {
   if (!m.isGroup) return m.reply('❌ Command ini hanya bisa digunakan di grup!')
   if (!isAdmin && !isOwner) return m.reply('❌ Command ini hanya untuk admin grup!')
   
@@ -11,27 +11,33 @@ let handler = async (m, { conn, args, isAdmin, isOwner }) => {
     return m.reply('❌ Belum ada list di grup ini!')
   }
   
-  if (!args[0]) {
+  if (!text) {
     return m.reply(`❌ Format salah!
 
 Gunakan:
-.dellist <id>
+.dellist <title>
 
 Contoh:
-.dellist list-1702123456789
+.dellist Daftar Harga
 
-Gunakan .listall untuk melihat semua ID list`)
+Gunakan .list untuk melihat semua list`)
   }
   
-  const listId = args[0]
+  const titleSearch = text.trim()
   
-  if (!global.db.data.chats[chatId].lists[listId]) {
-    return m.reply(`❌ List dengan ID "${listId}" tidak ditemukan!
+  // Find list by title (case-insensitive)
+  const listEntry = Object.entries(global.db.data.chats[chatId].lists).find(
+    ([id, list]) => list.title.toLowerCase() === titleSearch.toLowerCase()
+  )
+  
+  if (!listEntry) {
+    return m.reply(`❌ List dengan title "${titleSearch}" tidak ditemukan!
 
-Gunakan .listall untuk melihat semua ID list`)
+Gunakan .list untuk melihat semua list`)
   }
   
-  const listTitle = global.db.data.chats[chatId].lists[listId].title
+  const [listId, listData] = listEntry
+  const listTitle = listData.title
   
   // Delete list
   delete global.db.data.chats[chatId].lists[listId]
@@ -40,12 +46,11 @@ Gunakan .listall untuk melihat semua ID list`)
   
   m.reply(`✅ List berhasil dihapus!
 
-📋 ID: ${listId}
 📝 Title: ${listTitle}
 📊 Total List Tersisa: ${totalLists}/25`)
 }
 
-handler.help = ['dellist <id>']
+handler.help = ['dellist <title>']
 handler.tags = ['group']
 handler.command = /^(dellist|deletelist|hapuslist)$/i
 handler.group = true

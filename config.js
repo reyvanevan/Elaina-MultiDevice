@@ -13,10 +13,10 @@
 dan tambahkan nomer bot di global.config.pairingNumber
 */
 
-import { watchFile, unwatchFile } from 'fs'
 import chalk from 'chalk'
-import { fileURLToPath } from 'url'
+import { unwatchFile, watchFile } from 'fs'
 import moment from 'moment-timezone'
+import { fileURLToPath } from 'url'
 
 /*============= WAKTU =============*/
 let wibh = moment.tz('Asia/Jakarta').format('HH')
@@ -60,7 +60,7 @@ global.config = {
 
     /*============== STAFF ==============*/
     owner: [
-[ '6285282530851', 'RexxHayanasiDEV', true ] // Ganti Nomer Lu Sama Nama Lu
+[ '6281224258870', 'Reyvan', true ] // Ganti Nomer Lu Sama Nama Lu
 ],
 
 
@@ -68,7 +68,7 @@ global.config = {
     namebot: "Elaina - MultiDevice",
     
     /*============== PAIRING ==============*/
-    pairingNumber: "-", // Nomor Bot yang mau di pairing
+    pairingNumber: "6285166328091", // Nomor Bot yang mau di pairing
     pairingAuth: true, // False kalau mau via QR Code [ Ga disaranin Jadiin False ]
 
     /*============== API ==============*/
