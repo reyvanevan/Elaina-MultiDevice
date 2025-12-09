@@ -40,13 +40,12 @@ Gunakan ${usedPrefix}list untuk melihat semua list`)
     
     const text = `
 ╭━━━━━━━━━━━━━━━━
-│ 📋 *${list.title}*
+│ *${list.title}*
 ├━━━━━━━━━━━━━━━━
 │
 ${list.content}
 │
 ├━━━━━━━━━━━━━━━━
-│ 📅 Dibuat: ${createdDate}
 │ 🔄 Update: ${updatedDate}
 ╰━━━━━━━━━━━━━━━━
 `.trim()
@@ -65,9 +64,10 @@ ${list.content}
       sections.push({
         title: `📂 List ${i + 1}-${Math.min(i + 10, listsArray.length)}`,
         rows: chunk.map(list => ({
-          header: "📋",
+          // header: "📋",
           title: list.title,
-          description: `Dibuat: ${new Date(list.createdAt).toLocaleDateString('id-ID')}`,
+          // description: `Dibuat: ${new Date(list.createdAt).toLocaleDateString('id-ID')}`,
+          description: list.title,
           id: `${usedPrefix}list ${list.id}`
         }))
       })
@@ -115,15 +115,16 @@ ${list.content}
     
   } catch (e) {
     console.error('Error show list:', e)
-    
     // Fallback to text list
     let text = `📋 *DAFTAR LIST GRUP*\n\n📊 Total: ${listIds.length}/25\n\n`
     
     Object.values(lists).forEach((list, i) => {
       text += `${i + 1}. *${list.title}*\n`
-      text += `   📅 ${new Date(list.createdAt).toLocaleDateString('id-ID')}\n\n`
+      // text += `   📅 ${new Date(list.createdAt).toLocaleDateString('id-ID')}\n\n`
+      text += `\n`
     })
     
+    text += `\nKetik nomor atau gunakan button untuk melihat detail`
     text += `\nKetik nomor atau gunakan button untuk melihat detail`
     
     m.reply(text)
